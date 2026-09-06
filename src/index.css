@@ -1,0 +1,124 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --font-serif: 'Playfair Display', Georgia, serif;
+  --font-mono: 'JetBrains Mono', monospace;
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+
+  --color-obsidian: #0a0b0e;
+  --color-slate-card: #12141c;
+  --color-bone: #f3f3f1;
+  --color-stone: #94a3b8;
+  --color-blue-accent: #38bdf8;
+  --color-teal-accent: #14b8a6;
+}
+
+@layer base {
+  body {
+    background-color: #edeef2;
+    color: #0f172a;
+    font-family: var(--font-sans);
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+
+  html.dark body {
+    background-color: #0a0b0e;
+    color: #f3f3f1;
+  }
+}
+
+/* Swiss Editorial Hairline Borders & Grids */
+.hairline-border {
+  border: 1px solid rgba(148, 163, 184, 0.35);
+}
+html.dark .hairline-border {
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.hairline-border-t {
+  border-top: 1px solid rgba(148, 163, 184, 0.35);
+}
+html.dark .hairline-border-t {
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.hairline-border-b {
+  border-bottom: 1px solid rgba(148, 163, 184, 0.35);
+}
+html.dark .hairline-border-b {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.hairline-border-r {
+  border-right: 1px solid rgba(148, 163, 184, 0.35);
+}
+html.dark .hairline-border-r {
+  border-right: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.hairline-border-l {
+  border-left: 1px solid rgba(148, 163, 184, 0.35);
+}
+html.dark .hairline-border-l {
+  border-left: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* Subtle SVG Grain Overlay */
+.bg-noise-grain {
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.03'/%3E%3C/svg%3E");
+}
+
+/* Custom Glow Effect & Smooth Card Elevation */
+.hover-glow {
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.hover-glow:hover {
+  border-color: rgba(2, 132, 199, 0.45);
+  box-shadow: 0 12px 35px -10px rgba(2, 132, 199, 0.2);
+  transform: translateY(-2px);
+}
+html.dark .hover-glow:hover {
+  border-color: rgba(56, 189, 248, 0.35);
+  box-shadow: 0 10px 40px -10px rgba(56, 189, 248, 0.15);
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #edeef2;
+}
+html.dark ::-webkit-scrollbar-track {
+  background: #0a0b0e;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 3px;
+}
+html.dark ::-webkit-scrollbar-thumb {
+  background: #1e293b;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #0284c7;
+}
+html.dark ::-webkit-scrollbar-thumb:hover {
+  background: #38bdf8;
+}
+
+/* Flashing colon animation for live local clock */
+@keyframes blink-colon {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.15; }
+}
+
+.animate-blink-colon {
+  animation: blink-colon 1.5s ease-in-out infinite;
+}
